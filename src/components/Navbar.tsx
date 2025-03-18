@@ -35,6 +35,7 @@ const Navbar: React.FC = () => {
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+  
 
   const handleMobileMenuToggle = () => {
     setMobileMenuOpen(!mobileMenuOpen);
