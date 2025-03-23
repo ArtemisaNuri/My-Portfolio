@@ -1,7 +1,8 @@
 import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
-import { ArrowDown, ExternalLink, Github, Linkedin } from "lucide-react";
+import { ArrowDown, Github, Linkedin } from "lucide-react";
 import { animateHero } from "@/utils/gsapAnimations";
+import Orb from "./Orbit";
 
 const Hero: React.FC = () => {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -87,9 +88,8 @@ const Hero: React.FC = () => {
       id="home"
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
-      {" "}
       <div
-        className="universe-bg absolute inset-0  bg-opacity-30 bg-cover  mb-8 bg-center bg-no-repeat z-0 "
+        className="universe-bg absolute inset-0 bg-opacity-30 bg-cover bg-center bg-no-repeat z-0"
         style={{
           backgroundImage: "url('/images/star3.jpg')",
           transition: "opacity 0.5s ease-out",
@@ -105,60 +105,88 @@ const Hero: React.FC = () => {
             "linear-gradient(to bottom, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 100%)",
         }}
       ></div>
-      {/* Extra gradient layer specifically for the bottom edge blend */}
       <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-background via-background/95 to-transparent z-1"></div>
-      {/* Keep some of the decorative elements */}
       <div className="hero-decoration absolute top-1/4 right-1/4 w-64 h-64 rounded-full bg-violet-600/20 blur-3xl opacity-30 z-1 animate-pulse"></div>
       <div
         className="hero-decoration absolute bottom-1/4 left-1/4 w-48 h-48 rounded-full bg-violet-800/20 blur-2xl opacity-20 z-1 animate-pulse"
         style={{ animationDelay: "1s" }}
       ></div>
-      <div className="container mx-auto px-4 md:px-6 z-10 relative pt-20">
-        <div className="flex flex-col items-center text-center md:text-left md:items-start max-w-3xl mx-auto md:mx-0">
-          <h1 className="hero-title text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 text-gradient">
-            Creative Frontend Developer
-          </h1>
 
-          <h2 className="hero-subtitle text-lg md:text-xl mb-6 text-gray-300">
-            I create{" "}
-            <span className="text-violet-400">
-              stunning digital experiences
-            </span>{" "}
-            with modern web technologies and animations.
-          </h2>
+      <div className="container mx-auto px-4 md:px-6 z-10 relative">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+          {/* Left side - Orb with name */}
+          <div className="relative w-full md:w-5/12 flex justify-center mt-16 md:mt-0">
+            <div className="max-w-md w-full aspect-square">
+              <Orb
+                hoverIntensity={0.5}
+                rotateOnHover={true}
+                hue={0}
+                forceHoverState={false}
+              />
+            </div>
 
-          <div className="hero-cta flex flex-col md:flex-row gap-4 mt-2">
-            <button
-              onClick={scrollToProjects}
-              className="py-3 px-6 rounded-md bg-violet-600 hover:bg-violet-700 text-white transition-colors shadow-sm hover:shadow-glow-sm flex items-center justify-center gap-2"
-            >
-              View My Work
-              <ArrowDown size={18} />
-            </button>
+            {/* Name overlay centered in the orb */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white drop-shadow-md tracking-wider">
+                <span className="bg-gradient-to-r from-violet-400 to-indigo-300 bg-clip-text text-transparent">
+                  Artemisa
+                </span>
+                <br />
+                <span className="bg-gradient-to-r from-indigo-300 to-violet-400 bg-clip-text text-transparent">
+                  Nuri
+                </span>
+              </h2>
+            </div>
+          </div>
 
-            <div className="flex gap-4">
-              <a
-                href="https://github.com/ArtemisaNuri"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-3 rounded-md bg-secondary hover:bg-secondary/80 text-white transition-colors shadow-sm hover:shadow-glow-sm flex items-center justify-center"
-                aria-label="GitHub"
+          {/* Right side - Hero content */}
+          <div className="w-full md:w-7/12 flex flex-col items-center md:items-start text-center md:text-left mt-8 md:mt-0">
+            <h1 className="hero-title text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 text-gradient">
+              Creative Frontend Developer
+            </h1>
+
+            <h2 className="hero-subtitle text-lg md:text-xl mb-6 text-gray-300">
+              I create{" "}
+              <span className="text-violet-400">
+                stunning digital experiences
+              </span>{" "}
+              with modern web technologies and animations.
+            </h2>
+
+            <div className="hero-cta flex flex-col sm:flex-row gap-4 mt-2">
+              <button
+                onClick={scrollToProjects}
+                className="py-3 px-6 rounded-md bg-violet-600 hover:bg-violet-700 text-white transition-colors shadow-sm hover:shadow-glow-sm flex items-center justify-center gap-2"
               >
-                <Github size={20} />
-              </a>
-              <a
-                href="https://www.linkedin.com/in/artemisa-nuri-827172254/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-3 rounded-md bg-secondary hover:bg-secondary/80 text-white transition-colors shadow-sm hover:shadow-glow-sm flex items-center justify-center"
-                aria-label="Portfolio"
-              >
-                <Linkedin size={20} />
-              </a>
+                View My Work
+                <ArrowDown size={18} />
+              </button>
+
+              <div className="flex gap-4 mt-4 sm:mt-0">
+                <a
+                  href="https://github.com/ArtemisaNuri"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-3 rounded-md bg-secondary hover:bg-secondary/80 text-white transition-colors shadow-sm hover:shadow-glow-sm flex items-center justify-center"
+                  aria-label="GitHub"
+                >
+                  <Github size={20} />
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/artemisa-nuri-827172254/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-3 rounded-md bg-secondary hover:bg-secondary/80 text-white transition-colors shadow-sm hover:shadow-glow-sm flex items-center justify-center"
+                  aria-label="LinkedIn"
+                >
+                  <Linkedin size={20} />
+                </a>
+              </div>
             </div>
           </div>
         </div>
       </div>
+
       <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center">
         <span className="text-sm text-gray-400 mb-2">Scroll down</span>
         <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center p-1">

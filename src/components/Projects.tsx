@@ -29,7 +29,7 @@ const Projects: React.FC = () => {
       id: 1,
       title: "Archstudio",
       description:
-        "ArchStudio is a sleek and modern platform designed to showcase architecture projects with stunning visual presentation and intuitive navigation. Built with React, Vite, Tailwind CSS, Shadcn UI, and TypeScript, it delivers a seamless user experience with a minimalist and professional design. Whether it's contemporary homes, urban structures, or innovative architectural concepts, ArchStudio brings projects to life with high-quality imagery and well-structured layouts.",
+        "ArchStudio is a sleek and modern platform designed to showcase architecture projects with stunning visual presentation and intuitive navigation. Built with React, Vite, Tailwind CSS, Shadcn UI, and TypeScript.",
       image: archstudio,
       tags: ["React", "Vite", "Tailwind CSS", "Shadcn UI", "Typescript"],
       github: "https://github.com/ArtemisaNuri/ArchStudio-Website",
@@ -39,7 +39,7 @@ const Projects: React.FC = () => {
       id: 2,
       title: "Prime Property",
       description:
-        "Prime Property is a modern real estate platform built with React, Vite, Tailwind CSS, Shadcn UI, and TypeScript. It leverages RapidAPI to provide users with seamless property listings, advanced search functionality, and a sleek, responsive design. Whether you're looking to buy, sell, or explore properties, Prime Property offers a user-friendly experience with real-time data updates.",
+        "Prime Property is a modern real estate platform built with React, Vite, Tailwind CSS, Shadcn UI, and TypeScript. It leverages seamless property listings, advanced search functionality, and a sleek, responsive design. ",
       image: realestate,
       tags: ["React", "Vite", "Tailwind CSS", "Shadcn UI", "Typescript"],
       github: "https://github.com/ArtemisaNuri/PrimeProperties",
@@ -59,7 +59,7 @@ const Projects: React.FC = () => {
       id: 4,
       title: "Smart Flight Scheduler",
       description:
-        " Smart Flights is a smart and efficient flight planning application that provides real-time flight data, optimized routes, and seamless scheduling using Rapid API. Built with modern technologies, it ensures users can search, track, and plan flights with accuracy and ease. Whether you're a frequent traveler or an aviation enthusiast, this platform offers a smooth and interactive experience.",
+        " Smart Flights is a smart and efficient flight planning application that provides real-time flight data, optimized routes, and seamless scheduling using Rapid API. Built with modern technologies, it ensures users can search and plan flights with accuracy and ease. Whether you're a frequent traveler or an aviation enthusiast, this platform offers a smooth and interactive experience.",
       image: flights,
       tags: ["React", "Typescript", "Shadcn UI", "API"],
       github: "https://github.com/ArtemisaNuri/FlyHigh-Application",
