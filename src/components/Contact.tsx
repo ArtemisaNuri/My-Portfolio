@@ -1,80 +1,102 @@
-
-import React, { useEffect, useRef, useState } from 'react';
-import { gsap } from 'gsap';
-import { Mail, Send, MapPin, Phone } from 'lucide-react';
-import { staggerReveal } from '@/utils/gsapAnimations';
-import { useToast } from '@/hooks/use-toast';
+import React, { useEffect, useRef, useState } from "react";
+import { gsap } from "gsap";
+import { Mail, Send, MapPin, Phone } from "lucide-react";
+import { staggerReveal } from "@/utils/gsapAnimations";
+import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/lib/supabase";
 
 const Contact: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
+    name: "",
+    email: "",
+    message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
-  
+
   useEffect(() => {
     if (!sectionRef.current) return;
-    
+
     const ctx = gsap.context(() => {
-      staggerReveal('.contact-heading > *', 0.2, 1);
-      
+      staggerReveal(".contact-heading > *", 0.2, 1);
+
       gsap.fromTo(
-        '.contact-form',
+        ".contact-form",
         { y: 50, opacity: 0 },
         {
           y: 0,
           opacity: 1,
           duration: 0.8,
-          ease: 'power3.out',
+          ease: "power3.out",
           scrollTrigger: {
-            trigger: '.contact-form',
-            start: 'top 85%',
-          }
+            trigger: ".contact-form",
+            start: "top 85%",
+          },
         }
       );
-      
-      gsap.utils.toArray<HTMLElement>('.contact-info-item').forEach((item, index) => {
-        gsap.fromTo(
-          item,
-          { x: 30, opacity: 0 },
-          {
-            x: 0,
-            opacity: 1,
-            duration: 0.6,
-            delay: 0.2 + (index * 0.1),
-            ease: 'power3.out',
-            scrollTrigger: {
-              trigger: item,
-              start: 'top 85%',
+
+      gsap.utils
+        .toArray<HTMLElement>(".contact-info-item")
+        .forEach((item, index) => {
+          gsap.fromTo(
+            item,
+            { x: 30, opacity: 0 },
+            {
+              x: 0,
+              opacity: 1,
+              duration: 0.6,
+              delay: 0.2 + index * 0.1,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: item,
+                start: "top 85%",
+              },
             }
-          }
-        );
-      });
+          );
+        });
     }, sectionRef);
-    
+
     return () => ctx.revert();
   }, []);
-  
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
-  
-  const handleSubmit = (e: React.FormEvent) => {
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    setTimeout(() => {
+
+    try {
+      const { data, error } = await supabase
+        .from("contact_messages")
+        .insert([formData]); 
+
+      if (error) {
+        throw error;
+      }
+
       toast({
         title: "Message sent successfully!",
         description: "I'll get back to you as soon as possible.",
       });
-      setFormData({ name: '', email: '', message: '' });
+
+      setFormData({ name: "", email: "", message: "" });
+    } catch (err) {
+      console.error("Error inserting to Supabase:", err);
+
+      toast({
+        variant: "destructive",
+        title: "Error sending message",
+        description: "Please try again later.",
+      });
+    } finally {
       setIsSubmitting(false);
-    }, 1500);
+    }
   };
 
   return (
@@ -216,7 +238,7 @@ const Contact: React.FC = () => {
                       href="mailto:hello@example.com"
                       className="text-white hover:text-violet-400 transition-colors"
                     >
-                      artnisa.nuri@live.com
+                      artenisanuri1@gmail.com
                     </a>
                   </div>
                 </div>
