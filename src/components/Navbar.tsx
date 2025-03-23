@@ -80,13 +80,13 @@ const Navbar: React.FC = () => {
     <nav
       className={cn(
         "navbar fixed w-full z-50 transition-all duration-300",
-        isScrolled
+        isScrolled || mobileMenuOpen
           ? "py-3 bg-background/70 backdrop-blur-md shadow-md"
-          : "py-5 bg-transparent"
+          : "py-5 bg-background/30 backdrop-blur-sm md:bg-transparent"
       )}
     >
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
-        <div className="text-2xl font-bold text-gradient-violet">
+        <div className="text-2xl font-bold text-gradient-violet w-sm:text-xs">
           Artemisa's Portfolio
         </div>
 
@@ -105,7 +105,7 @@ const Navbar: React.FC = () => {
           </button>
           <button
             onClick={() => scrollToSection("about")}
-            className="nav-link relative text-white hover:text-violet-400 transition-colors after:content-[''] after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-violet-500 after:transition-all hover:after:w-full"
+            className="nav-link relative text-white hover:text-violet-400 transition-colors after:content-[''] after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-violet-500 after:transition-all hover:after:w-full  "
           >
             About
           </button>
@@ -128,11 +128,11 @@ const Navbar: React.FC = () => {
 
       <div
         className={cn(
-          "mobile-menu fixed top-0 right-0 h-full w-3/4 bg-background/95 backdrop-blur-lg z-50 transform translate-x-full transition-transform duration-300 shadow-lg",
+          "mobile-menu fixed top-0 right-0 h-full w-3/4 bg-background z-50 transform translate-x-full transition-transform duration-300 shadow-lg",
           mobileMenuOpen ? "translate-x-0" : "translate-x-full"
         )}
       >
-        <div className="p-6 flex flex-col h-full">
+        <div className="p-6 flex flex-col h-full ">
           <div className="flex justify-end">
             <button
               onClick={handleMobileMenuToggle}
@@ -142,7 +142,7 @@ const Navbar: React.FC = () => {
               <X size={24} />
             </button>
           </div>
-          <div className="flex flex-col space-y-6 mt-16">
+          <div className="flex flex-col bg-purple-900 space-y-6 mt-16">
             <button
               onClick={() => scrollToSection("home")}
               className="mobile-nav-link text-xl text-white hover:text-violet-400 transition-colors"
