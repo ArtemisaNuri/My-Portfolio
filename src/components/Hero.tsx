@@ -35,7 +35,6 @@ const Hero: React.FC = () => {
       const xPos = (clientX / innerWidth - 0.5) * 20;
       const yPos = (clientY / innerHeight - 0.5) * 20;
 
-      // Parallax effect for the universe background
       gsap.to(".universe-bg", {
         x: xPos * 0.05,
         y: yPos * 0.05,
@@ -55,7 +54,6 @@ const Hero: React.FC = () => {
 
     window.addEventListener("mousemove", handleMouseMove);
 
-    // Fade effect when scrolling
     window.addEventListener("scroll", () => {
       const scrollPosition = window.scrollY;
       const heroHeight = heroRef.current?.offsetHeight || 0;
@@ -114,7 +112,6 @@ const Hero: React.FC = () => {
 
       <div className="container mx-auto px-4 md:px-6 z-10 relative">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-          {/* Left side - Orb with name */}
           <div className="relative w-full md:w-5/12 flex justify-center mt-16 md:mt-0">
             <div className="max-w-md w-full aspect-square">
               <Orb
@@ -125,7 +122,6 @@ const Hero: React.FC = () => {
               />
             </div>
 
-            {/* Name overlay centered in the orb */}
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white drop-shadow-md tracking-wider">
                 <span className="bg-gradient-to-r from-violet-400 to-indigo-300 bg-clip-text text-transparent">
@@ -139,7 +135,6 @@ const Hero: React.FC = () => {
             </div>
           </div>
 
-          {/* Right side - Hero content */}
           <div className="w-full md:w-7/12 flex flex-col items-center md:items-start text-center md:text-left mt-8 md:mt-0">
             <h1 className="hero-title text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 text-gradient">
               Creative Frontend Developer
@@ -187,7 +182,7 @@ const Hero: React.FC = () => {
         </div>
       </div>
 
-      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center">
+      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 hidden md:flex flex-col items-center">
         <span className="text-sm text-gray-400 mb-2">Scroll down</span>
         <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center p-1">
           <div className="w-1.5 h-1.5 bg-white rounded-full animate-bounce mt-1"></div>
